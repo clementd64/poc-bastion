@@ -1,0 +1,38 @@
+services:
+  bastion:
+    build:
+      context: .
+      target: bastion
+    hostname: bastion
+    ports: 
+      - "2222:22"
+    volumes:
+      - ./bastion:/usr/bin/bastion:ro
+      - ./host:/host:ro
+
+  host1:
+    build:
+      context: .
+      target: host
+    hostname: host1
+    volumes: 
+      - ./keys/host1_key:/etc/ssh/ssh_host_ed25519_key:ro
+      - ./keys/group1_key.pub:/home/app/.ssh/authorized_keys:ro
+
+  host2:
+    build:
+      context: .
+      target: host
+    hostname: host2
+    volumes: 
+      - ./keys/host2_key:/etc/ssh/ssh_host_ed25519_key:ro
+      - ./keys/group2_key.pub:/home/app/.ssh/authorized_keys:ro
+
+  host3:
+    build:
+      context: .
+      target: host
+    hostname: host3
+    volumes: 
+      - ./keys/host3_key:/etc/ssh/ssh_host_ed25519_key:ro
+      - ./keys/group1_key.pub:/home/app/.ssh/authorized_keys:ro

@@ -1,0 +1,17 @@
+#!/bin/sh
+
+assert_access() {
+    if [ ! -r "$1" ]; then
+        echo "Unauthorized"
+        exit 1
+    fi
+}
+
+HOST_ID="$2"
+
+assert_access "/host/$HOST_ID"
+source "/host/$HOST_ID"
+
+assert_access "$KEY"
+
+exec ssh -i "$KEY" -l "$REMOTE_USER" "$HOST"
