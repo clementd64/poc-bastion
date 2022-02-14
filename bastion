@@ -1,0 +1,9 @@
+#!/bin/sh
+source config
+
+if [ "$1" = "-c" ]; then
+    shift
+    exec ssh -l "$REMOTE_USER" "$HOST" -- $@
+fi
+
+exec ssh -l "$REMOTE_USER" "$HOST"
