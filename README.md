@@ -23,6 +23,5 @@ Not working: port forwarding, x11 forwarding, sftp.
 Each remote host has a corresponding user in the bastion.
 OpenSSH validate the user with the `autorized_keys` file.
 A simple script is used as shell that create a connection to the remote host.
-When a autorized user (see `autorized_keys`) make a connection, a simple shell script make a new ssh connection to the remote host.
 
 In case of user escapation, the private keys for other host are protected by the file system permision.
